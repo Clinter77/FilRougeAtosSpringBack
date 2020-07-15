@@ -59,7 +59,7 @@ public class Site {
     @JsonView({MyJsonView.SiteClient.class,MyJsonView.Besoin.class})
     private String ville;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "idclient")
     @JsonView({MyJsonView.Client.class,MyJsonView.Besoin.class, MyJsonView.SiteClient.class})
     private Client clientSite;

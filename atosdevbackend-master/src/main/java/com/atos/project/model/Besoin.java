@@ -67,7 +67,7 @@ public class Besoin {
     Date d_echeance;
 
     // Site
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "idSit")
     @JsonView({
             MyJsonView.Besoin.class,
@@ -78,7 +78,7 @@ public class Besoin {
     private Site site;
 
     // Contact
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "id_ctc")
     @JsonView({
             MyJsonView.Besoin.class,

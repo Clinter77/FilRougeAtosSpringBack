@@ -15,22 +15,25 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 @IdClass(CollaborateurCompetence.PK.class)
 public class CollaborateurCompetence {
+
 	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name = "idClb", referencedColumnName = "id_clb")
 	@JsonView({MyJsonView.CollaborateurCompetence.class})
 	private Collaborateur collaborateur;
 
 	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "idCpc", referencedColumnName = "idCpc")
 	@JsonView({MyJsonView.Collaborateur.class,MyJsonView.CollaborateurCompetence.class})
 	private Competence competence;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@Id
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "idExp", referencedColumnName = "id_exp")
 	@JsonView({MyJsonView.Collaborateur.class,MyJsonView.CollaborateurCompetence.class})
 	private Experience experience;
+
 
 	public Competence getCompetence() {
 		return competence;

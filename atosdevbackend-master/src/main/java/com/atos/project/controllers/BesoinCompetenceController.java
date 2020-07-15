@@ -19,34 +19,44 @@ public class BesoinCompetenceController {
         this.besoinCompetenceService = besoinCompetenceServiceService;
     }
 
-    /*******************************************************
-     *                      List of BesoinCompetence
-     *******************************************************/
+    /**
+     * Api Endpoint GET Pour Lister les Besoins D'un clients
+     * @return
+     */
     @GetMapping("/bsn_cpc")
     @JsonView(MyJsonView.BesoinCompetence.class)
     public List<BesoinCompetence> showclb_cpc() {
         return this.besoinCompetenceService.findAll();
     }
 
+    /**
+     * Api Endpoint GET Pour Lister les Besoins de Competence D'un client
+     * par son attribut ID
+     * @param id
+     * @return
+     */
     @GetMapping("/bsn_cpc/{id}")
     @JsonView(MyJsonView.BesoinCompetence.class)
     public BesoinCompetence getclb_cpc(@PathVariable int id) {
         return (BesoinCompetence) this.besoinCompetenceService.findById(id);
     }
 
-    /*******************************************************
-     *                     Add BesoinCompetence
-     *******************************************************/
+    /**
+     * Api EndPoint PUT pour Ajouter un BesoinCompetence
+     * @param besoinCompetence
+     * @return
+     */
     @PutMapping("/addbsn_cpc")
     @JsonView(MyJsonView.BesoinCompetence.class)
     public BesoinCompetence addcollab(@RequestBody BesoinCompetence besoinCompetence) {
         return this.besoinCompetenceService.save(besoinCompetence);
     }
 
-    /******************************************************
-     *                      Delete BesoinCompetence
-     *******************************************************/
 
+    /**
+     * Api EndPoint DELETE pour supprimer un BesoinCompetence
+     * @param id
+     */
     @DeleteMapping("/delbsn_cpc/{id}")
     @JsonView(MyJsonView.BesoinCompetence.class)
     public void delete(@PathVariable int id) {

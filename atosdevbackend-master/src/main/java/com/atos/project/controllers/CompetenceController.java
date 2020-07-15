@@ -20,35 +20,43 @@ public class CompetenceController {
         this.competenceService = competenceService;
     }
 
-    /*******************************************************
-     *                      List of Competence
-     *******************************************************/
+    /**
+     * Api Endpoint url Get retourne un list de Competences
+     * @return
+     */
     @GetMapping("/competences")
     @JsonView(MyJsonView.Competence.class)
     public List<Competence> showCompetence() {
         return this.competenceService.findAll();
     }
 
+    /**
+     * Api Endpoint url Get retourne un Competences avec l'id
+     * @param id
+     * @return
+     */
     @GetMapping("/competences/{id}")
     @JsonView(MyJsonView.Competence.class)
     public Competence getcomp(@PathVariable int id) {
         return (Competence) this.competenceService.findById(id);
     }
 
-
-    /*******************************************************
-     *                     Add Competence
-     *******************************************************/
+    /**
+     * Api Endpoint url PUT pour Ajouter un Competences
+     * @param competences
+     * @return
+     */
     @PutMapping("/addcomp")
     @JsonView(MyJsonView.Competence.class)
     public Competence addcomp(@RequestBody Competence competences) {
         return this.competenceService.save(competences);
     }
 
-    /******************************************************
-     *                      Delete Competence
-     *******************************************************/
 
+    /**
+     * Api Endpoint url DELETE pour supprimer une Competence
+     * @param id
+     */
     @DeleteMapping("/delcomp/{id}")
     @JsonView(MyJsonView.Competence.class)
     public void delete(@PathVariable int id) {

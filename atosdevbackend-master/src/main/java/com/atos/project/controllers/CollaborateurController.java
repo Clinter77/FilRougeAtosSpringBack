@@ -21,15 +21,21 @@ public class CollaborateurController {
         this.collaborateurService = collaborateurService;
     }
 
-    /*******************************************************
-     *                      List of Collaborateur
-     *******************************************************/
+    /**
+     * Api ENDPOINT GET liste de Collaborateur
+     * @return
+     */
     @GetMapping("/clb")
     @JsonView(MyJsonView.Collaborateur.class)
     public List<Collaborateur> showCollaborateur() {
         return this.collaborateurService.findAll();
     }
 
+    /**
+     * RestApi Controler url Get pour AJOUTER un Collaborateur avec l'id
+     * @param id
+     * @return
+     */
     @GetMapping("/clb/{id}")
     @JsonView(MyJsonView.Collaborateur.class)
     public Collaborateur getCollab(@PathVariable int id) {
@@ -37,9 +43,11 @@ public class CollaborateurController {
     }
 
 
-    /*******************************************************
-     *                     Add Collaborateur
-     *******************************************************/
+    /**
+     * RestApi Controler url PUT pour AJOUTER un Collaborateur
+     * @param collaborateur
+     * @return
+     */
     @PutMapping("/addclb")
     public Collaborateur addcollab(@RequestBody Collaborateur collaborateur) {
         collaborateur = this.collaborateurService.save(collaborateur);
@@ -52,12 +60,13 @@ public class CollaborateurController {
         return this.collaborateurService.save(collaborateur);
     }
 
-    /******************************************************
-     *                      Delete Collaborateur
-     *******************************************************/
-
+    /**
+     * Api Endpoint url DELETE pour Supprimer un Collaborateur pad son ID
+     * @param id
+     */
     @DeleteMapping("/delclb/{id}")
     public void delete(@PathVariable int id) {
+
         this.collaborateurService.delete(id);
     }
 }

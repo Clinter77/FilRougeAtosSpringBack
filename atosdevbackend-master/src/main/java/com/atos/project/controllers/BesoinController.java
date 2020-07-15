@@ -18,15 +18,21 @@ public class BesoinController {
     @Autowired
     public BesoinController(final BesoinService besoinService ) {this.besoinService = besoinService;}
 
-    /*******************************************************
-     *                      List of Besoin
-     *******************************************************/
+    /**
+     * Api ENDPOINT GET List Des Besoins
+     * @return
+     */
     @GetMapping("/besoins")
     @JsonView(MyJsonView.Besoin.class)
     public List<Besoin> showBesoin() {
         return this.besoinService.findAll();
     }
 
+    /**
+     * Api ENDPOINT GET List Des Besoins par son ID
+     * @param id
+     * @return
+     */
     @GetMapping("/besoins/{id}")
     @JsonView(MyJsonView.Besoin.class)
     public Besoin getEvt(@PathVariable int id) {
@@ -34,19 +40,22 @@ public class BesoinController {
     }
 
 
-    /*******************************************************
-     *                     Add Besoin
-     *******************************************************/
+    /**
+     * Api ENDPOINT PUT pour Ajouter des Besoins
+     * @param besoins
+     * @return
+     */
     @PutMapping("/addBesoin")
     @JsonView(MyJsonView.Besoin.class)
     public Besoin addUsers(@RequestBody Besoin besoins) {
         return this.besoinService.save(besoins);
     }
 
-    /******************************************************
-     *                      Delete Besoin
-     *******************************************************/
 
+    /**7
+     *  Api ENDPOINT DELETE  pour Supprimer des Besoins
+     * @param id_bsn
+     */
     @DeleteMapping("/besoins/{id_bsn}")
     @JsonView(MyJsonView.Besoin.class)
     public void delete(@PathVariable Integer id_bsn) {

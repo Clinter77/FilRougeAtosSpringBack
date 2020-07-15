@@ -25,7 +25,7 @@ public class Competence {
             MyJsonView.Contact.class,
             MyJsonView.BesoinCompetence.class
     })
-    private int idCpc;
+    private Integer idCpc;
 
     @Column(unique = true)
     @JsonView({
@@ -37,12 +37,12 @@ public class Competence {
     })
     private String lib;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "idTcp")
     @JsonView({MyJsonView.Competence.class, MyJsonView.BesoinCompetence.class})
     private TypeCompetence typeCompetence;
 
-    @ManyToMany(mappedBy = "listeCompetence",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "listeCompetence",cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JsonView({MyJsonView.Competence.class, MyJsonView.BesoinCompetence.class})
     Set<ContactClient> listeContactClient;
 //    @ManyToMany
@@ -52,11 +52,12 @@ public class Competence {
 //            inverseJoinColumns = @JoinColumn(name = "id_ctc"))
 //    Set<ContactClient> listeContactClient;
 
-    public int getIdCpc() {
+
+    public Integer getIdCpc() {
         return idCpc;
     }
 
-    public void setIdCpc(int idCpc) {
+    public void setIdCpc(Integer idCpc) {
         this.idCpc = idCpc;
     }
 
@@ -83,4 +84,6 @@ public class Competence {
     public void setListeContactClient(Set<ContactClient> listeContactClient) {
         this.listeContactClient = listeContactClient;
     }
+
+
 }

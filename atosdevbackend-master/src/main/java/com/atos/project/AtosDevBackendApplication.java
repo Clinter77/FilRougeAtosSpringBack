@@ -1,5 +1,10 @@
 package com.atos.project;
 
+/**
+ * Classe principale - point d'entrée de l'API (Application Program Interface)
+ * 
+ */
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

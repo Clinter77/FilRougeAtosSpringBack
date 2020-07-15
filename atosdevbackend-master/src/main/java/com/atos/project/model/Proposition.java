@@ -21,7 +21,7 @@ public class Proposition {
     @JsonView({MyJsonView.Proposition.class,MyJsonView.Besoin.class})
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="idBsn")
     @JsonView({MyJsonView.Proposition.class})
     private Besoin besoin;
@@ -31,7 +31,7 @@ public class Proposition {
     @JsonView({MyJsonView.Proposition.class,MyJsonView.Besoin.class})
     private Date d_pro;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "idClb")
     @JsonView({MyJsonView.Proposition.class,MyJsonView.Besoin.class})
     private Collaborateur collaborateur;
@@ -52,7 +52,7 @@ public class Proposition {
     @JsonView({MyJsonView.Proposition.class,MyJsonView.Besoin.class})
     private Date d_relance;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "id")
     @JsonView(MyJsonView.Proposition.class)
     private User user;
@@ -62,7 +62,7 @@ public class Proposition {
     @JsonView({MyJsonView.Proposition.class,MyJsonView.Besoin.class})
     private Date ts;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "idSpr")
     @JsonView({MyJsonView.Proposition.class, MyJsonView.Besoin.class})
     private StatutProposition statut_prop;

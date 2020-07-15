@@ -47,12 +47,12 @@ public class Client {
     @JsonView({MyJsonView.Besoin.class,MyJsonView.Client.class,MyJsonView.SiteClient.class})
     private String ville;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name= "idbsn")
     @JsonView({MyJsonView.Client.class, MyJsonView.SiteClient.class})
     private Besoin besoinClient;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name= "idprops")
     @JsonView({MyJsonView.Client.class, MyJsonView.SiteClient.class, MyJsonView.Besoin.class})
     private Proposition props;

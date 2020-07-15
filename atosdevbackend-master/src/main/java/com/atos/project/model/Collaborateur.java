@@ -42,7 +42,7 @@ public class Collaborateur {
     private String Identifiant_Dass;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "idAgc")
     @JsonView({MyJsonView.Collaborateur.class,MyJsonView.CollaborateurCompetence.class,MyJsonView.Proposition.class})
     private Agence agence;
@@ -59,7 +59,7 @@ public class Collaborateur {
     @JsonView({MyJsonView.Collaborateur.class,MyJsonView.CollaborateurCompetence.class,MyJsonView.Proposition.class})
     private boolean f_actif;
 
-    @OneToMany(mappedBy="collaborateur",fetch=FetchType.LAZY,cascade=CascadeType.ALL, targetEntity = CollaborateurCompetence.class)
+    @OneToMany(mappedBy="collaborateur",fetch=FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, targetEntity = CollaborateurCompetence.class,  orphanRemoval = true)
     @JsonView({MyJsonView.Collaborateur.class})
     private List<CollaborateurCompetence> listeCollaborateurCompetence = new ArrayList<>();
 

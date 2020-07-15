@@ -57,6 +57,14 @@ public class AuthController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    /**
+     * Api EndPoint POST Pour Authentifier un utilisteur
+     * si l'utilisateur est dans la base de donnée un un Token est
+     * generé  avec l'id, usernom, email et role de l'utilisateur
+     * @param loginRequest
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
         try {
@@ -86,6 +94,12 @@ public class AuthController {
 
     }
 
+
+    /**
+     * Api EndPoint GET pour creer un nouvelle utlisteur avec un ROLE_USER
+     * @param signUpRequest
+     * @return
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

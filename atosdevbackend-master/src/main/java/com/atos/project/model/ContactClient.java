@@ -53,12 +53,12 @@ public class ContactClient {
     @JsonView({MyJsonView.Contact.class, MyJsonView.Besoin.class, MyJsonView.BesoinCompetence.class})
     private String fax;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="id_sit")
     @JsonView({MyJsonView.Contact.class, MyJsonView.BesoinCompetence.class})
     private Site site;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch=FetchType.LAZY)
     @JoinTable(
             name = "contact_competence",
             joinColumns = @JoinColumn(name = "id_ctc"),
